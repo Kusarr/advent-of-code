@@ -3,7 +3,7 @@ fun main() {
     part2()
 }
 
-fun part1() {
+private fun part1() {
     val regex = Regex("\\d")
 
     val sum = FileUtil().readLines("day1-input.txt").sumOf { line ->
@@ -15,7 +15,7 @@ fun part1() {
     println("Result Part1: $sum")
 }
 
-fun part2() {
+private fun part2() {
     val numberMap = mapOf(
         "1" to 1, "2" to 2, "3" to 3, "4" to 4, "5" to 5, "6" to 6, "7" to 7, "8" to 8, "9" to 9,
         "one" to 1, "two" to 2, "three" to 3, "four" to 4,
