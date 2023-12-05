@@ -1,6 +1,6 @@
 import kotlin.math.pow
 
-val regex = Regex("\\d+")
+private val regex = Regex("\\d+")
 fun main() {
     val lines = FileUtil().readLines("day4-input.txt")
     part1(lines)
