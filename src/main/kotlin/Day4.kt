@@ -25,7 +25,7 @@ private fun part2(lines: List<String>) {
         }
     }
 
-    println("Result Part1: ${countings.slice(lines.indices).sum()}")
+    println("Result Part2: ${countings.slice(lines.indices).sum()}")
 }
 
 private fun getDuplicationsCount(line: String): Int {

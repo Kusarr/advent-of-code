@@ -22,7 +22,7 @@ private fun part2(lines: List<String>) {
 
     val result = getNumberOfSolutions(maxTime, distance)
 
-    println("Result Part1: $result")
+    println("Result Part2: $result")
 }
 
 private fun getNumberOfSolutions(maxTime: Long, distance: Long): Int {

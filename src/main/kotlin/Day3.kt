@@ -43,7 +43,7 @@ private fun part2(lines: List<String>) {
         }
     }
 
-    println("Result Part1: $result")
+    println("Result Part2: $result")
 }
 
 private fun diagonalRange(range: IntRange): IntRange {
