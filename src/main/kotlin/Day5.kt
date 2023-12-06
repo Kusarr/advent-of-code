@@ -1,5 +1,6 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.math.min
 
 suspend fun main() {
     val lines = FileUtil().readLines("day5-input.txt")
@@ -32,7 +33,7 @@ private suspend fun part2(lines: List<String>) {
             LongRange(seedsToRanges[item], seedsToRanges[item] + seedsToRanges[item + 1] - 1).asSequence()
                 .forEach { number ->
                     val location = findLowestLocation(mutableMapOf(number.toString() to number), lines)
-                    lowestLocation = Math.min(lowestLocation, location)
+                    lowestLocation = min(lowestLocation, location)
                 }
             result.add(lowestLocation)
             println("Finished job $item.")
