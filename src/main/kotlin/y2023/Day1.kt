@@ -1,3 +1,7 @@
+package y2023
+
+import FileUtil
+
 fun main() {
     part1()
     part2()
@@ -6,7 +10,7 @@ fun main() {
 private fun part1() {
     val regex = Regex("\\d")
 
-    val sum = FileUtil().readLines("day1-input.txt").sumOf { line ->
+    val sum = FileUtil().readLines("2023/day1-input.txt").sumOf { line ->
         val firstDigit = regex.find(line)!!.value
         val lastDigit = regex.find(line.reversed())!!.value
         "$firstDigit$lastDigit".toInt()
@@ -24,7 +28,7 @@ private fun part2() {
     val regex = Regex("(${numberMap.keys.joinToString("|")})")
     val regexReverse = Regex("(${numberMap.keys.joinToString("|").reversed()})")
 
-    val sum = FileUtil().readLines("day1-input.txt").sumOf { line ->
+    val sum = FileUtil().readLines("2023/day1-input.txt").sumOf { line ->
         val firstDigit = numberMap[regex.find(line)!!.value]
         val lastDigit = numberMap[regexReverse.find(line.reversed())!!.value.reversed()]
         "$firstDigit$lastDigit".toInt()

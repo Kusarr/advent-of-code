@@ -1,8 +1,11 @@
+package y2023
+
+import FileUtil
 import kotlin.math.pow
 
 private val regex = Regex("\\d+")
 fun main() {
-    val lines = FileUtil().readLines("day4-input.txt")
+    val lines = FileUtil().readLines("2023/day4-input.txt")
     part1(lines)
     part2(lines)
 }

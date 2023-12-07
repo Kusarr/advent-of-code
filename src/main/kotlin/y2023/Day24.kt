@@ -1,5 +1,9 @@
+package y2023
+
+import FileUtil
+
 fun main() {
-    val lines = FileUtil().readLines("day23-input.txt")
+    val lines = FileUtil().readLines("2023/day24-input.txt")
     part1(lines)
     part2(lines)
 }

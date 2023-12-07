@@ -1,9 +1,12 @@
+package y2023
+
+import FileUtil
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.min
 
 suspend fun main() {
-    val lines = FileUtil().readLines("day5-input.txt")
+    val lines = FileUtil().readLines("2023/day5-input.txt")
     part1(lines)
     val start = System.currentTimeMillis()
     part2(lines)

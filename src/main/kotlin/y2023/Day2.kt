@@ -1,3 +1,7 @@
+package y2023
+
+import FileUtil
+
 fun main() {
     part1()
     part2()
@@ -7,7 +11,7 @@ private fun part1() {
     val colorMap = mapOf("red" to 12, "green" to 13, "blue" to 14)
     var result = 0
 
-    FileUtil().readLines("day2-input.txt").forEach line@{ line ->
+    FileUtil().readLines("2023/day2-input.txt").forEach line@{ line ->
         val idToValues = line.split(':')
         idToValues[1].split(';').forEach { set ->
             set.split(',')
@@ -28,7 +32,7 @@ private fun part1() {
 private fun part2() {
     val regex = Regex("[:,;]")
 
-    val result = FileUtil().readLines("day2-input.txt").sumOf { line ->
+    val result = FileUtil().readLines("2023/day2-input.txt").sumOf { line ->
         val colorMap = mutableMapOf<String, Int>()
         line.split(regex).drop(1).forEach {
             val (count, color) = it.trim().split(' ')
