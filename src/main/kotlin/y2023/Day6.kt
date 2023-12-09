@@ -9,6 +9,7 @@ fun main() {
 }
 
 private val regex = Regex("\\d+")
+
 private fun part1(lines: List<String>) {
     val times = regex.findAll(lines[0]).map { it.value.toLong() }
     val distances = regex.findAll(lines[1]).map { it.value.toLong() }.toList()
