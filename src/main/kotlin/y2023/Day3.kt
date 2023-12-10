@@ -1,14 +1,13 @@
 package y2023
 
 import FileUtil
+import numberRegex
 
 fun main() {
     val lines = FileUtil().readLines("2023/day3-input.txt")
     part1(lines)
     part2(lines)
 }
-
-val numRegex = Regex("\\d+")
 
 private fun part1(lines: List<String>) {
     val symbolRegex = Regex("[^.\\d\\s]")
@@ -19,7 +18,7 @@ private fun part1(lines: List<String>) {
             symbolRegex.findAll(lines[symLine]).map { it.range.first }
         }
 
-        numRegex.findAll(lines[i]).forEach { number ->
+        numberRegex.findAll(lines[i]).forEach { number ->
             if (symbolIndices.any { it in IntRange(number.range.first - 1, number.range.last + 1) }) {
                 result += number.value.toInt()
             }
@@ -35,7 +34,7 @@ private fun part2(lines: List<String>) {
     var result = 0
     for (i in lines.indices) {
         val numberIndices = getLinesToCheck(i, lines.size).distinct().flatMap { symLine ->
-            numRegex.findAll(lines[symLine])
+            numberRegex.findAll(lines[symLine])
                 .map { NumberToRange(it.value.toInt(), diagonalRange(it.range)) }
         }
 

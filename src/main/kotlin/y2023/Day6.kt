@@ -1,6 +1,7 @@
 package y2023
 
 import FileUtil
+import numberRegex
 
 fun main() {
     val lines = FileUtil().readLines("2023/day6-input.txt")
@@ -8,11 +9,9 @@ fun main() {
     part2(lines)
 }
 
-private val regex = Regex("\\d+")
-
 private fun part1(lines: List<String>) {
-    val times = regex.findAll(lines[0]).map { it.value.toLong() }
-    val distances = regex.findAll(lines[1]).map { it.value.toLong() }.toList()
+    val times = numberRegex.findAll(lines[0]).map { it.value.toLong() }
+    val distances = numberRegex.findAll(lines[1]).map { it.value.toLong() }.toList()
 
     val result = times.mapIndexed { index, maxTime ->
         getNumberOfSolutions(maxTime, distances[index])
@@ -22,8 +21,8 @@ private fun part1(lines: List<String>) {
 }
 
 private fun part2(lines: List<String>) {
-    val maxTime = regex.findAll(lines[0]).joinToString("") { it.value }.toLong()
-    val distance = regex.findAll(lines[1]).joinToString("") { it.value }.toLong()
+    val maxTime = numberRegex.findAll(lines[0]).joinToString("") { it.value }.toLong()
+    val distance = numberRegex.findAll(lines[1]).joinToString("") { it.value }.toLong()
 
     val result = getNumberOfSolutions(maxTime, distance)
 

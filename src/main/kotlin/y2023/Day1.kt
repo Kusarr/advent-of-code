@@ -1,6 +1,7 @@
 package y2023
 
 import FileUtil
+import digitRegex
 
 fun main() {
     part1()
@@ -8,11 +9,9 @@ fun main() {
 }
 
 private fun part1() {
-    val regex = Regex("\\d")
-
     val sum = FileUtil().readLines("2023/day1-input.txt").sumOf { line ->
-        val firstDigit = regex.find(line)!!.value
-        val lastDigit = regex.find(line.reversed())!!.value
+        val firstDigit = digitRegex.find(line)!!.value
+        val lastDigit = digitRegex.find(line.reversed())!!.value
         "$firstDigit$lastDigit".toInt()
     }
 

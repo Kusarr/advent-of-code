@@ -1,9 +1,9 @@
 package y2023
 
 import FileUtil
+import numberRegex
 import kotlin.math.pow
 
-private val regex = Regex("\\d+")
 fun main() {
     val lines = FileUtil().readLines("2023/day4-input.txt")
     part1(lines)
@@ -32,7 +32,7 @@ private fun part2(lines: List<String>) {
 }
 
 private fun getDuplicationsCount(line: String): Int {
-    return regex.findAll(line.split(':')[1])
+    return numberRegex.findAll(line.split(':')[1])
         .groupBy { it.value }
         .filter { it.value.size > 1 }
         .count()
