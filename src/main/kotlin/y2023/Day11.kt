@@ -19,45 +19,43 @@ fun main() {
     part2(grid)
 }
 
-private fun part1(grid: MutableList<MutableList<Char>>) {
+
+private fun part1(grid: List<List<Char>>) {
     val galaxies = getGalaxies(grid)
-    val result = evaluateTotalPath(galaxies, 1)
+    val result = evaluateTotalPath(galaxies, 2)
 
     println("Result Part1: $result")
 }
 
-private fun part2(grid: MutableList<MutableList<Char>>) {
-    //todo
+private fun part2(grid: List<List<Char>>) {
     val galaxies = getGalaxies(grid)
-    val result = evaluateTotalPath(galaxies, 100)
+    val result = evaluateTotalPath(galaxies, 1_000_000)
 
     println("Result Part2: $result")
 }
 
 private fun evaluateTotalPath(galaxies: List<Pair<Int, Int>>, emptySpaceFactor: Int): Long {
-    var result = 0L
+    var shortestPathTotal = 0L
 
     for (i in galaxies.indices) {
-        result += galaxies.drop(i + 1).sumOf {
-            val xRange = IntRange(min(galaxies[i].second, it.second), max(galaxies[i].second, it.second))
-            val yRange = IntRange(min(galaxies[i].first, it.first), max(galaxies[i].first, it.first))
-            val countEmptyRows = yRange.count { range -> emptyRows.contains(range) }
+        galaxies.drop(i + 1).forEach {
+            val xRange = IntRange(min(galaxies[i].first, it.first), max(galaxies[i].first, it.first))
+            val yRange = IntRange(min(galaxies[i].second, it.second), max(galaxies[i].second, it.second))
             val countEmptyCols = xRange.count { range -> emptyCols.contains(range) }
+            val countEmptyRows = yRange.count { range -> emptyRows.contains(range) }
+            val additionalDistance = (countEmptyCols + countEmptyRows) * emptySpaceFactor
 
-            // debugging
             val distance = abs(galaxies[i].first - it.first) + abs(galaxies[i].second - it.second)
-            println("${galaxies[i]}->$it = $distance + $countEmptyRows + $countEmptyCols")
-
-            distance + (countEmptyCols * emptySpaceFactor) + (countEmptyRows * emptySpaceFactor)
+            shortestPathTotal += distance + additionalDistance - countEmptyCols - countEmptyRows
         }
     }
-    return result
+    return shortestPathTotal
 }
 
-private fun getGalaxies(grid: MutableList<MutableList<Char>>): List<Pair<Int, Int>> {
+private fun getGalaxies(grid: List<List<Char>>): List<Pair<Int, Int>> {
     val galaxies = grid.flatMapIndexed { rowIndex, row ->
         row.mapIndexedNotNull { colIndex, value ->
-            if (value == GALAXY) rowIndex to colIndex else null
+            if (value == GALAXY) colIndex to rowIndex else null
         }
     }
     return galaxies
