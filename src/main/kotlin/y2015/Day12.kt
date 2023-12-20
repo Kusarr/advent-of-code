@@ -4,6 +4,7 @@ import FileUtil
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import numberRegex
 
 fun main() {
     val jsonString = FileUtil().readLines("2015/day12-input.txt")[0]
@@ -12,7 +13,7 @@ fun main() {
 }
 
 private fun part1(jsonString: String) {
-    val result = Regex("-?\\d+").findAll(jsonString).sumOf { it.value.toInt() }
+    val result = numberRegex.findAll(jsonString).sumOf { it.value.toInt() }
     println("Result Part1: $result")
 }
 

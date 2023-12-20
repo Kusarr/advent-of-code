@@ -1,7 +1,7 @@
 package y2015
 
 import FileUtil
-import numberRegex
+import positivNumberRegex
 
 fun main() {
     val lines = FileUtil().readLines("2015/day14-input.txt")
@@ -49,7 +49,7 @@ private data class Reindeer(val line: String) {
     var points = 0
 
     init {
-        val numbers = numberRegex.findAll(line).map { it.value }.toList()
+        val numbers = positivNumberRegex.findAll(line).map { it.value }.toList()
         this.speed = numbers[0].toInt()
         this.flyTime = numbers[1].toInt()
         this.restTime = numbers[2].toInt()

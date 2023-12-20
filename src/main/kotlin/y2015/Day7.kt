@@ -1,7 +1,7 @@
 package y2015
 
 import FileUtil
-import numberRegex
+import positivNumberRegex
 
 fun main() {
     val lines = FileUtil().readLines("2015/day7-input.txt")
@@ -36,7 +36,7 @@ private fun createMap(lines: List<String>) {
 }
 
 private fun evaluateWire(wire: String): UInt {
-    if (numberRegex.matches(wire)) {
+    if (positivNumberRegex.matches(wire)) {
         return wire.toUInt()
     }
 

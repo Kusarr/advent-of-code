@@ -1,7 +1,7 @@
 package y2023
 
 import FileUtil
-import numberRegex
+import positivNumberRegex
 
 fun main() {
     val lines = FileUtil().readLines("2023/day3-input.txt")
@@ -18,7 +18,7 @@ private fun part1(lines: List<String>) {
             symbolRegex.findAll(lines[symLine]).map { it.range.first }
         }
 
-        numberRegex.findAll(lines[i]).forEach { number ->
+        positivNumberRegex.findAll(lines[i]).forEach { number ->
             if (symbolIndices.any { it in IntRange(number.range.first - 1, number.range.last + 1) }) {
                 result += number.value.toInt()
             }
@@ -34,7 +34,7 @@ private fun part2(lines: List<String>) {
     var result = 0
     for (i in lines.indices) {
         val numberIndices = getLinesToCheck(i, lines.size).distinct().flatMap { symLine ->
-            numberRegex.findAll(lines[symLine])
+            positivNumberRegex.findAll(lines[symLine])
                 .map { NumberToRange(it.value.toInt(), diagonalRange(it.range)) }
         }
 

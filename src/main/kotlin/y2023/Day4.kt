@@ -1,7 +1,7 @@
 package y2023
 
 import FileUtil
-import numberRegex
+import positivNumberRegex
 import kotlin.math.pow
 
 fun main() {
@@ -32,7 +32,7 @@ private fun part2(lines: List<String>) {
 }
 
 private fun getDuplicationsCount(line: String): Int {
-    return numberRegex.findAll(line.split(':')[1])
+    return positivNumberRegex.findAll(line.split(':')[1])
         .groupBy { it.value }
         .filter { it.value.size > 1 }
         .count()

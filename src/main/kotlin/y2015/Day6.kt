@@ -1,7 +1,7 @@
 package y2015
 
 import FileUtil
-import numberRegex
+import positivNumberRegex
 import kotlin.math.max
 
 fun main() {
@@ -14,7 +14,7 @@ private fun part1(lines: List<String>) {
     val array: Array<Array<Boolean>> = Array(1000) { Array(1000) { false } }
 
     lines.forEach { line ->
-        val coords = numberRegex.findAll(line).map { it.value.toInt() }.toList()
+        val coords = positivNumberRegex.findAll(line).map { it.value.toInt() }.toList()
         val op = getOp(line)
 
         for (i in coords[1]..coords[3]) {
@@ -41,7 +41,7 @@ private fun part2(lines: List<String>) {
     val array: Array<Array<Int>> = Array(1000) { Array(1000) { 0 } }
 
     lines.forEach { line ->
-        val coords = numberRegex.findAll(line).map { it.value.toInt() }.toList()
+        val coords = positivNumberRegex.findAll(line).map { it.value.toInt() }.toList()
         val op = getOp2(line)
 
         for (i in coords[1]..coords[3]) {
