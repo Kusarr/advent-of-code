@@ -3,43 +3,59 @@ package y2015
 import FileUtil
 
 private const val GRID_SIZE = 100
-private const val DEBUG = true
+private const val DEBUG = false
+private const val ITERATIONS = 100
 
 private val grid: Array<Array<Boolean>> = Array(GRID_SIZE) { Array(GRID_SIZE) { false } }
 private val nextGrid: Array<Array<Boolean>> = Array(GRID_SIZE) { Array(GRID_SIZE) { false } }
+private var cornersAlwaysOn = false
 
 fun main() {
     val lines = FileUtil().readLines("2015/day18-input.txt")
-    lines.forEachIndexed { y, line -> line.forEachIndexed { x, light -> grid[x][y] = light == '#' } }
 
+    lines.forEachIndexed { y, line -> line.forEachIndexed { x, light -> grid[x][y] = light == '#' } }
     part1()
+
+    lines.forEachIndexed { y, line -> line.forEachIndexed { x, light -> grid[x][y] = light == '#' } }
     part2()
 }
 
 private fun part1() {
-    for (i in 1..4) {
-        for (y in grid.indices) {
-            for (x in grid[y].indices) {
-                determineNextState(x, y)
-            }
-        }
-        activateIteration()
-    }
+    repeat(ITERATIONS) { iterateStep() }
 
     val result = grid.sumOf { row -> row.count { it } }
     println("Result Part1: $result")
 }
 
-private fun activateIteration() {
-    println()
+private fun part2() {
+    cornersAlwaysOn = true
+    repeat(ITERATIONS) { iterateStep() }
+
+    val result = grid.sumOf { row -> row.count { it } }
+    println("Result Part2: $result")
+}
+
+private fun iterateStep() {
+    if (cornersAlwaysOn) cornersOn()
     for (y in grid.indices) {
         for (x in grid[y].indices) {
-            print(if (nextGrid[x][y]) '#' else '.')
+            determineNextState(x, y)
+        }
+    }
+    activateIteration()
+    if (cornersAlwaysOn) cornersOn()
+}
+
+private fun activateIteration() {
+    if (DEBUG) println()
+    for (y in grid.indices) {
+        for (x in grid[y].indices) {
+            if (DEBUG) print(if (nextGrid[x][y]) '#' else '.')
             grid[x][y] = nextGrid[x][y]
         }
-        println()
+        if (DEBUG) println()
     }
-    println()
+    if (DEBUG) println()
 }
 
 private fun determineNextState(x: Int, y: Int) {
@@ -67,8 +83,9 @@ private fun getOnNeighbors(x: Int, y: Int): Int {
     return countOn
 }
 
-private fun part2() {
-    val result = null
-
-    println("Result Part2: $result")
+private fun cornersOn() {
+    grid[0][0] = true
+    grid[0][GRID_SIZE - 1] = true
+    grid[GRID_SIZE - 1][0] = true
+    grid[GRID_SIZE - 1][GRID_SIZE - 1] = true
 }
