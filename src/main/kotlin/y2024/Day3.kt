@@ -25,29 +25,25 @@ private fun part1(lines: List<String>) {
 private fun part2(lines: List<String>) {
     val mulRegex = Regex("do\\(\\)|don't\\(\\)|mul\\(\\d{1,3},\\d{1,3}\\)")
 
-    val result = lines.sumOf { line ->
-        var enabled = true
-        var sum: Long = 0
-        mulRegex.findAll(line).map { it.value }.forEach {
-            if (it == "do()") {
-                enabled = true
-                return@forEach
+    var enabled = true
+    var result = 0L
+    mulRegex.findAll(lines.joinToString())
+        .map { it.value }
+        .forEach { instruction ->
+            when {
+                instruction == "do()" -> enabled = true
+                instruction == "don't()" -> enabled = false
+                instruction.startsWith("mul") && enabled -> result += evalMul(instruction)
             }
-            if (it == "don't()") {
-                enabled = false
-                return@forEach
-            }
-            if (enabled) sum += evalMul(it)
+            println(result)
         }
-        sum
-    }
 
     println("Result Part2: $result")
 }
 
 private fun evalMul(mul: String): Int {
     return positivNumberRegex.findAll(mul)
-        .map { num -> num.value.toInt() }
+        .map { it.value.toInt() }
         .take(2)
-        .reduce { d1, d2 -> d1 * d2 }
+        .reduce { a, b -> a * b }
 }
