@@ -3,8 +3,8 @@ package y2015
 import java.math.BigInteger
 import java.security.MessageDigest
 
-val md5: MessageDigest = MessageDigest.getInstance("MD5")
-const val input = "iwrupvqb"
+private val md5: MessageDigest = MessageDigest.getInstance("MD5")
+private const val input = "iwrupvqb"
 
 fun main() {
     part1()
