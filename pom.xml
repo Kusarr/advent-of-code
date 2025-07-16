@@ -14,8 +14,8 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <kotlin.version>2.1.0</kotlin.version>
-        <kotlinx.version>1.9.0</kotlinx.version>
+        <kotlin.version>2.2.0</kotlin.version>
+        <kotlinx.version>1.10.2</kotlinx.version>
         <gson.version>2.11.0</gson.version>
     </properties>
 
