@@ -3,7 +3,7 @@ package y2025
 import FileUtil
 
 fun main() {
-    val lines = FileUtil().readLines("2019/day4-input.txt")
+    val lines = FileUtil().readLines("2025/day4-input.txt")
     part1(lines)
     part2(lines)
 }
